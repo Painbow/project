@@ -11,6 +11,15 @@ def create_app():
     db.init_app(app)
 
     app.add_url_rule('/', view_func=BidsBoundary.render_all_bids)
+    
+    @app.route("/staff")
+    def staff():
+        return render_template('staff.html')
+    
+    @app.route("/staffbids")
+    def staff_bids():
+        bids = Bids.query.all()
+        return render_template('staff_bids.html', bids=bids)
 
     with app.app_context():
         db.drop_all()
@@ -53,23 +62,6 @@ def create_app():
         db.session.commit()
     return app
 
-app = create_app()
-
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
