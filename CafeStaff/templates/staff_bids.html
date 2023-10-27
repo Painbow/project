@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Staff Bids</title>
+
+{% endblock %}
+
+{% block body %}
+
+
+<div class="center">
+
+    <p>
+        <h3>Bids History</h3>
+    </p>
+    &nbsp;<br />
+
+    <table class="table table-hover table-bordered w-auto container">
+        <thead>
+            <tr>
+                <th>Bid ID</th>
+                <th>Shift</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <!-- no rooms to choose from if no launched rooms or if no created rooms -->
+            {% if (bids|length < 1) %}
+            <caption>No available bids currently. Please check back later.</caption>
+            {% else %}
+            <!-- iterate over all current created rooms -->
+            {% for bid in bids %}
+            <tr>
+                <!-- display room details if there are rooms with launched status -->
+                
+                <td>{{ bid.id }}</td>
+                <td>{{ bid.shift_type }} on {{ bid.shift_date }}</td>
+                <td>
+                    {% if bid.approval == True %}
+                        Approved
+                    {% else %}
+                        Rejected
+                    {% endif %}
+                </td>
+                
+                
+            </tr>
+            {% endfor %}
+            {% endif %}
+            
+        </tbody>  
+    </table>
+</div>
+
+{% endblock %}

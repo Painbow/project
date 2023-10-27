@@ -1,0 +1,105 @@
+th, td {
+    border-collapse: collapse;
+    padding: 10px
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.center2{
+    text-align: center !important;
+}
+
+.form {
+    padding-top: 25px;
+    margin-bottom: 30px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fieldset, fieldset form {
+    padding: 20px;
+    border: 0;
+    display: table;
+}
+
+select, input {
+    width:100%;
+    box-sizing: border-box;
+}
+
+fieldset p {
+    display: table-row;
+}
+
+fieldset label {
+    text-align: left;
+}
+
+fieldset label, fieldset input, fieldset select {
+    display: table-cell;
+    margin: 3px;
+}
+
+br {
+    display: block; /* makes it have a width */
+    content: ""; /* clears default height */
+    margin-top: 10px; /* changes height */
+}
+
+#promoCode {
+    display: none;
+}
+
+.size {
+    width: 100%;
+}
+
+.nav-color {
+    background-color: rgb(210, 233, 235);
+}
+
+.textblue {
+    color: #60c9c8;
+    font-weight: 600;
+}
+
+.small-text {
+    color: gray;
+    font-size: 14px;
+}
+
+.login-box h2 {
+    text-align: center;
+    font-size: 22px;
+    border-bottom: 5px solid #60c9c8;
+    margin-bottom: 20px;
+    padding: 13px 0;
+    color: #60c9c8;
+  }
+
+.btn-info {
+    background-color: #60c9c8 !important;
+    color: #ffffff !important;
+}
+
+.btn-info:hover
+{
+    background-color: #4da0b5 !important;
+    color: #f1ebeb !important;
+}
+
+.nav-text {
+    color: #4da0b5 !important;
+}
+
+.nav-text:hover{
+    color: #194b73 !important;
+}
