@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Create Staff Slot</title>
+{% endblock %}
+
+{% block body %}
+<div class="center">
+    <h3>Create Staff Slot</h3>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.shift_type.label }} {{ form.shift_type(size=32, class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.date.label }} {{ form.date(size=32, class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.status.label }} {{ form.status(size=32, class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Create Slot</button>
+    </form>
+</div>
+{% endblock %}
