@@ -32,11 +32,11 @@ def create_app():
         # Extract data from the JSON object
         shift_type = data.get('shift_type')
         date = data.get('date')
-        starttime = data.get('starttime')
-        endtime = data.get('endtime')
+        start_time = data.get('starttime')
+        end_time = data.get('endtime')
         print(date)
         # Create a new WorkSlot instance
-        new_slot = WorkSlot(shiftType=shift_type, date=date, status='AVAILABLE')
+        new_slot = WorkSlot(shiftType=shift_type, date=date, startTime=start_time, endTime=end_time, status='AVAILABLE')
 
         try:
             # Add the new slot to the database and commit the transaction
@@ -66,6 +66,8 @@ def create_app():
         new_workslot = WorkSlot(
             shiftType = 'AFTERNOON',
             date = '01-01-2000',
+            startTime = '6:00PM',
+            endTime = '7:00PM'
             status = 'Available',
         )
 

@@ -6,8 +6,10 @@ class WorkSlot(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement=True)
     shiftType = db.Column(db.String(50), nullable = False)
     date = db.Column(db.String(100), nullable = False)
+    startTime = db.Column(db.String(100), nullable = False)
+    endTime = db.Column(db.String(100), nullable = False)
     status = db.Column(db.String(100), default = 'Available',nullable = False)
-    bids = db.relationship("Bids",backref="workslot",)
+    bids = db.relationship("Bids",backref="workslot")
 
 class UserRole(db.Model):
     role = db.Column(db.String(50), primary_key = True, unique=True)
