@@ -53,7 +53,55 @@ def create_app():
             print(e)
             response = jsonify({"error": str(e)}), 500
             return response
+        
+    @app.route("/delete_room/<int:id>", methods=['DELETE'])
+    def delete_room(id):
+        work_slot = WorkSlot.query.get(id)
+        if work_slot:
+            db.session.delete(work_slot)
+            db.session.commit()
+            return jsonify({"message": "Work slot deleted successfully"}), 200
+        else:
+            return jsonify({"error": "Work slot not found"}), 404 
     
+    @app.route("/update_room", methods=['POST'])
+    def update_room():
+        data = request.get_json()  # Get JSON data from the request
+
+        # Extract data from the JSON object
+        work_slot_id = data.get('id')
+        print(work_slot_id)
+        name = data.get('name')
+        date = data.get('date')
+        starttime = data.get('starttime')
+        endtime = data.get('endtime')
+
+        # Find the work slot record in the database based on its ID
+        work_slot = WorkSlot.query.get(work_slot_id)
+
+        if work_slot:
+            print(f"Original Data: ID={work_slot.id}, Name={work_slot.shiftType}, Date={work_slot.date}, StartTime={work_slot.startTime}, EndTime={work_slot.endTime}")
+
+            # Update the work slot record with the new data
+            work_slot.shiftType = name
+            work_slot.date = date
+            work_slot.startTime = starttime
+            work_slot.endTime = endtime
+
+            print(f"Updated Data: ID={work_slot.id}, Name={work_slot.shiftType}, Date={work_slot.date}, StartTime={work_slot.startTime}, EndTime={work_slot.endTime}")
+
+            try:
+                # Commit the changes to the database
+                db.session.commit()
+                return jsonify({"message": "Work slot updated successfully"}), 200
+            except Exception as e:
+                # Handle database errors and return an error response
+                db.session.rollback()
+                return jsonify({"error": str(e)}), 500
+        else:
+            # If the work slot with the specified ID is not found, return a 404 response
+            return jsonify({"error": "Work slot not found"}), 404
+
     @app.route("/success")
     def success():
         return render_template('success.html')
@@ -67,7 +115,7 @@ def create_app():
             shiftType = 'AFTERNOON',
             date = '01-01-2000',
             startTime = '6:00PM',
-            endTime = '7:00PM'
+            endTime = '7:00PM',
             status = 'Available',
         )
 
